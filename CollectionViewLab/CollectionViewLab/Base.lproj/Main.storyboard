@@ -17,9 +17,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="umW-sE-A3a">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lc6-a3-DaI">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lc6-a3-DaI">
                                     <size key="itemSize" width="261" height="220"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -27,7 +27,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="countryCell" id="40p-kH-2VQ" customClass="CountryCell" customModule="CollectionViewLab" customModuleProvider="target">
-                                        <rect key="frame" x="76.5" y="0.0" width="261" height="220"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="261" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="fcV-9w-EJ2">
                                             <rect key="frame" x="0.0" y="0.0" width="261" height="220"/>
@@ -72,25 +72,33 @@
                                         <size key="customSize" width="261" height="220"/>
                                         <connections>
                                             <outlet property="countryImage" destination="Wrn-Wj-BhJ" id="3A1-X9-Gvr"/>
-                                            <outlet property="exchangeRate" destination="Y9h-rp-db4" id="AXE-fV-MgW"/>
+                                            <outlet property="moneyCode" destination="Y9h-rp-db4" id="AXE-fV-MgW"/>
+                                            <outlet property="moneyName" destination="fTE-tH-XFB" id="DKs-7C-lEh"/>
                                             <outlet property="nameLabel" destination="FhK-f8-FUe" id="Bi6-ls-745"/>
-                                            <outlet property="weather" destination="fTE-tH-XFB" id="DKs-7C-lEh"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="iFb-ol-ji3">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="iFb-ol-ji3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="06J-m6-5AA"/>
                             <constraint firstItem="umW-sE-A3a" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PQf-Z1-6Fz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="umW-sE-A3a" secondAttribute="bottom" id="QPN-Nq-hnB"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="umW-sE-A3a" secondAttribute="trailing" id="Uog-Mh-A0d"/>
-                            <constraint firstItem="umW-sE-A3a" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qlw-CF-KG3"/>
+                            <constraint firstItem="umW-sE-A3a" firstAttribute="top" secondItem="iFb-ol-ji3" secondAttribute="bottom" id="cr6-ha-geQ"/>
+                            <constraint firstItem="iFb-ol-ji3" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qfe-Er-TFW"/>
+                            <constraint firstItem="iFb-ol-ji3" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xtC-iG-lMF"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="countryCollection" destination="umW-sE-A3a" id="0R6-Kp-2GA"/>
+                        <outlet property="countrySearch" destination="iFb-ol-ji3" id="puo-Be-7p5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

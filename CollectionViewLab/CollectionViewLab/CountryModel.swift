@@ -9,11 +9,12 @@
 import Foundation
 
 struct CountryData: Decodable {
-    let name: String
-    let alpha2Code: String
-    let currencies: currencyInfo
+    let name: String?
+    let alpha2Code: String?
+    let currencies: [currencyInfo]?
 }
 
 struct currencyInfo: Decodable {
-    let code: String
+    let code: String?
+    let name: String?
 }

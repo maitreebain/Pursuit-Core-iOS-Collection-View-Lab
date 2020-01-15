@@ -15,13 +15,17 @@ class CountryCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     
-    @IBOutlet weak var exchangeRate: UILabel!
+    @IBOutlet weak var moneyCode: UILabel!
     
-    @IBOutlet weak var weather: UILabel!
+    @IBOutlet weak var moneyName: UILabel!
     
     func configureCell(for countryData: CountryData?) {
         
-        countryImage.getImage(with: "https://www.countryflags.io/\(countryData?.name ?? "be")/shiny/64.png") { [weak self] (result) in
+        nameLabel.text = countryData?.name
+        moneyCode.text = countryData?.currencies?.first?.code
+        moneyName.text = countryData?.currencies?.first?.name
+        
+        countryImage.getImage(with: "https://www.countryflags.io/\(countryData?.alpha2Code ?? "be")/shiny/64.png") { [weak self] (result) in
             
             switch result{
             case .failure(let appError):

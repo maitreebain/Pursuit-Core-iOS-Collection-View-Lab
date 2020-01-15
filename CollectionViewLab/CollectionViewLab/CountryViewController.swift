@@ -12,6 +12,8 @@ class CountryViewController: UIViewController {
     
     @IBOutlet weak var countryCollection: UICollectionView!
     
+    @IBOutlet weak var countrySearch: UISearchBar!
+    
     var country = [CountryData](){
         didSet {
             DispatchQueue.main.async {
@@ -20,17 +22,36 @@ class CountryViewController: UIViewController {
         }
     }
     
+    var searchQuery = "" {
+        didSet{
+            loadData(for: searchQuery)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         countryCollection.dataSource = self
         countryCollection.delegate = self
-        
+        countrySearch.delegate = self
+        loadData(for: "mexico")
     }
+    
 
-    func loadData() {
-        
+    func loadData(for search: String) {
+        CountryAPIClient.getCountry(for: search) { [weak self] (result) in
+            
+            switch result {
+            case .failure(let appError):
+                print("error is \(appError)")
+            case .success(let countryData):
+                self?.country = countryData
+                
+            }
+        }
     }
+    
 
 }
 
@@ -73,5 +94,9 @@ extension CountryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 1
     }
+    
+}
+
+extension CountryViewController: UISearchBarDelegate {
     
 }
