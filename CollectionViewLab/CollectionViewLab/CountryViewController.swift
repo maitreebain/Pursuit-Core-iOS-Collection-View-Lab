@@ -27,7 +27,7 @@ class CountryViewController: UIViewController {
             loadData(for: searchQuery)
         }
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +36,12 @@ class CountryViewController: UIViewController {
         countryCollection.delegate = self
         countrySearch.delegate = self
         loadData(for: "mexico")
+        view.backgroundColor = .black
     }
     
 
     func loadData(for search: String) {
-        CountryAPIClient.getCountry(for: search) { [weak self] (result) in
+        CountryAPIClient.getCountry(for: search.lowercased()) { [weak self] (result) in
             
             switch result {
             case .failure(let appError):
@@ -51,7 +52,6 @@ class CountryViewController: UIViewController {
             }
         }
     }
-    
 
 }
 
@@ -98,5 +98,13 @@ extension CountryViewController: UICollectionViewDelegateFlowLayout {
 }
 
 extension CountryViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        searchBar.resignFirstResponder()
+    }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchQuery = searchText
+    }
 }
